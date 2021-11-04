@@ -13,7 +13,8 @@ Model
   - Fit Normal(mu, sigma) so that it's centered around mean efficacy for a given group and 95% CI fits the group's CI - treat this distribution as population vaccine efficacy prob. distribution
   - Draw p ~ Normal(mu, sigma) for every person who got a second dose in the given group's week - treat p as personal vaccine efficacy probability
   - Draw success for each person from Bernoulli(p) count successes and treat them as the number of people from this group whose vaccine remains effective
-- Plot the median value from the repetitions on the map - per region using Eurostats NUTS json data.
+- Get the median value from the repetitions, add J&J vaccinated with the single dose, normalize by ECDC's denominator column for each region
+- Plot the values on the map - per region using Eurostats NUTS json data.
 
 Caveats:
 - This does not corrected for already distributed third doses because ECDC does not include such data (would be nice tho).
@@ -21,6 +22,7 @@ Caveats:
 we're getting an over-estimate of vaccine efficacy. I'd welcome a PR which fixes that and provides some estimates for J&J from other papers.
 - I'm assuming first doses have zero efficacy, because it's hard to track how many ppl who received first-doses are counted for second doses and when.
 - I'm assuming there's zero efficacy of second dose in the first 14 days, I'd welcome a PR that changes that to some reasonable estimate with a citation.
+- Some countries have other vaccines than Pfizer/Moderna/AZ/J&J, we're ignoring them now - treating as zero efficacy, I'd welcome a PR that fixes that.
 
 [1] https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3949410
 
